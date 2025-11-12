@@ -9797,3 +9797,8 @@ textarea.form-control {
   visibility: visible !important;
 }
 
+.js-fullheight {
+  min-height: 100vh;
+  height: auto !important;
+}
+

@@ -13,14 +13,16 @@
 
 
 	var fullHeight = function() {
-
-		$('.js-fullheight').css('height', $(window).height());
-		$(window).resize(function(){
-			$('.js-fullheight').css('height', $(window).height());
-		});
-
-	};
-	fullHeight();
+       function updateHeight() {
+         var windowHeight = window.innerHeight;
+         $('.js-fullheight').css('height', windowHeight + 'px');
+       }
+     
+       updateHeight();
+       $(window).on('resize orientationchange', updateHeight);
+       };
+       fullHeight();
+  
 
 	// loader
 	var loader = function() {
