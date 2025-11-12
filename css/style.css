@@ -9779,7 +9779,21 @@ textarea.form-control {
     stroke-dashoffset: -136px; } }
 
 
-    [data-scrollax] {
+/* --- Fix missing elements when Scrollax is disabled --- */
+[data-scrollax],
+[data-scrollax-parent] {
   opacity: 1 !important;
   transform: none !important;
+  visibility: visible !important;
 }
+
+/* Optional: ensures hero banners and section titles always appear */
+.hero-wrap, 
+.hero-banner,
+.section-title, 
+.ftco-section {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
