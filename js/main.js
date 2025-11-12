@@ -32,50 +32,50 @@
 	};
 	loader();
 
-	// Scrollax
-   $.Scrollax();
+	// Scrollax — keep animations on desktop only
+if (!/Mobi|Android/i.test(navigator.userAgent)) {
+  if (typeof $.Scrollax === 'function') {
+    $.Scrollax().install();
+  }
+} else {
+  // Disable parallax on mobile to prevent layout jumping
+  if (typeof $(window).stellar === 'function') {
+    $(window).stellar('destroy');
+  }
+}
 
+// Burger Menu
+var burgerMenu = function() {
+  $('body').on('click', '.js-fh5co-nav-toggle', function(event) {
+    event.preventDefault();
 
+    if ($('#ftco-nav').is(':visible')) {
+      $(this).removeClass('active');
+    } else {
+      $(this).addClass('active');
+    }
+  });
+};
+burgerMenu();
 
-   // Burger Menu
-	var burgerMenu = function() {
+// Smooth scroll for menu links (fixed version)
+var onePageClick = function() {
+  $(document).on('click', '#ftco-nav a[href^="#"]', function(event) {
+    // Only trigger on real clicks, not on page load or hash focus
+    event.preventDefault();
 
-		$('body').on('click', '.js-fh5co-nav-toggle', function(event){
+    var target = $(this).attr('href');
+    if ($(target).length) {
+      $('html, body').stop().animate({
+        scrollTop: $(target).offset().top - 70
+      }, 500);
+    }
+  });
+};
 
-			event.preventDefault();
+// Initialize smooth scroll only after full page load
+$(window).on('load', onePageClick);
 
-			if ( $('#ftco-nav').is(':visible') ) {
-				$(this).removeClass('active');
-			} else {
-				$(this).addClass('active');	
-			}
-
-			
-			
-		});
-
-	};
-	burgerMenu();
-
-
-	var onePageClick = function() {
-
-
-		$(document).on('click', '#ftco-nav a[href^="#"]', function (event) {
-	    event.preventDefault();
-
-	    var href = $.attr(this, 'href');
-
-	    $('html, body').animate({
-	        scrollTop: $($.attr(this, 'href')).offset().top - 70
-	    }, 500, function() {
-	    	// window.location.hash = href;
-	    });
-		});
-
-	};
-
-	onePageClick();
 	
 
 	var carousel = function() {
