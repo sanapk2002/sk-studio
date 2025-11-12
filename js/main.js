@@ -34,49 +34,45 @@
 	};
 	loader();
 
-	// Scrollax — keep animations on desktop only
-if (!/Mobi|Android/i.test(navigator.userAgent)) {
-  if (typeof $.Scrollax === 'function') {
-    $.Scrollax().install();
-  }
-} else {
-  // Disable parallax on mobile to prevent layout jumping
-  if (typeof $(window).stellar === 'function') {
-    $(window).stellar('destroy');
-  }
-}
-
-// Burger Menu
-var burgerMenu = function() {
-  $('body').on('click', '.js-fh5co-nav-toggle', function(event) {
-    event.preventDefault();
-
-    if ($('#ftco-nav').is(':visible')) {
-      $(this).removeClass('active');
-    } else {
-      $(this).addClass('active');
+	// Scrollax — disabled to fix disappearing text on desktop
+    if (typeof $.Scrollax === 'function') {
+      try {
+        $.Scrollax().destroy(); // disable parallax but keep layout normal
+      } catch (e) {}
     }
-  });
-};
-burgerMenu();
+    
 
-// Smooth scroll for menu links (fixed version)
-var onePageClick = function() {
-  $(document).on('click', '#ftco-nav a[href^="#"]', function(event) {
-    // Only trigger on real clicks, not on page load or hash focus
-    event.preventDefault();
-
-    var target = $(this).attr('href');
-    if ($(target).length) {
-      $('html, body').stop().animate({
-        scrollTop: $(target).offset().top - 70
-      }, 500);
-    }
-  });
-};
-
-// Initialize smooth scroll only after full page load
-$(window).on('load', onePageClick);
+    // Burger Menu
+    var burgerMenu = function() {
+      $('body').on('click', '.js-fh5co-nav-toggle', function(event) {
+        event.preventDefault();
+    
+        if ($('#ftco-nav').is(':visible')) {
+          $(this).removeClass('active');
+        } else {
+          $(this).addClass('active');
+        }
+      });
+    };
+    burgerMenu();
+    
+    // Smooth scroll for menu links (fixed version)
+    var onePageClick = function() {
+      $(document).on('click', '#ftco-nav a[href^="#"]', function(event) {
+        // Only trigger on real clicks, not on page load or hash focus
+        event.preventDefault();
+    
+        var target = $(this).attr('href');
+        if ($(target).length) {
+          $('html, body').stop().animate({
+            scrollTop: $(target).offset().top - 70
+          }, 500);
+        }
+      });
+    };
+    
+    // Initialize smooth scroll only after full page load
+    $(window).on('load', onePageClick);
 
 	
 
