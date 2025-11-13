@@ -9450,3 +9450,14 @@ textarea.form-control {
     z-index: 2;
   }
 }
+
+.home-slider.owl-carousel {
+  display: block !important;
+}
+.home-slider .slider-item {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+}
+
