@@ -12,17 +12,26 @@
   });
 
 
-	var fullHeight = function() {
+	// Fix full-height behavior on iOS Safari and mobile
+    var fullHeight = function() {
       function setHeight() {
-        var windowHeight = window.innerHeight || $(window).height();
-        
-        // On mobile, don't lock the height strictly
-        if (/Mobi|Android/i.test(navigator.userAgent)) {
-          $('.js-fullheight').css('min-height', windowHeight + 'px');
+        var windowHeight = window.innerHeight;
+    
+        if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          // On mobile Safari, use min-height to prevent scroll lock
+          $('.js-fullheight').css({
+            'min-height': windowHeight + 'px',
+            'height': 'auto'
+          });
         } else {
-          $('.js-fullheight').css('height', windowHeight + 'px');
+          // On desktop or Chrome mobile, keep full height
+          $('.js-fullheight').css({
+            'height': windowHeight + 'px',
+            'min-height': 'auto'
+          });
         }
       }
+    
       setHeight();
       $(window).on('resize orientationchange', setHeight);
     };
@@ -30,8 +39,9 @@
 
 
 
-	if (/Mobi|Android/i.test(navigator.userAgent)) {
-      // Disable all parallax scripts on mobile
+
+	// Disable Scrollax and Stellar only on mobile
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
       if (typeof $.Scrollax === 'function') {
         try { $.Scrollax().destroy(); } catch (e) {}
       }
@@ -39,6 +49,7 @@
         try { $(window).stellar('destroy'); } catch (e) {}
       }
     }
+
 
 
 	// loader
