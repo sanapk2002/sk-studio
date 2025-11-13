@@ -9802,3 +9802,25 @@ textarea.form-control {
   height: auto !important;
 }
 
+/* Fix hero section blocking scroll on mobile Safari */
+.hero,
+.hero .slider-item,
+.hero .one-third.img,
+.hero .overlay,
+.hero .overlay-1 {
+  pointer-events: none !important;
+  touch-action: auto !important;
+}
+
+.hero .text,
+.hero .btn {
+  pointer-events: auto !important;
+}
+
+/* Disable Scrollax transforms that can trap scroll */
+[data-scrollax-parent="true"] {
+  transform: none !important;
+  overflow: visible !important;
+}
+
+
