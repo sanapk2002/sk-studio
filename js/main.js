@@ -141,7 +141,7 @@
 	});
 
 	// Navbar scroll behavior
-        /*var scrollWindow = function () {
+        var scrollWindow = function () {
           // Run only on screens wider than 768px (desktop/tablet)
           if ($(window).width() > 768) {
             $(window).on('scroll', function () {
@@ -185,7 +185,7 @@
         };
         
         // Delay the initialization slightly to avoid early layout jumps
-        setTimeout(scrollWindow, 600);*/
+        setTimeout(scrollWindow, 600);
 
 
 	
