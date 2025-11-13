@@ -12,30 +12,33 @@
   });
 
 
-	// Fix full-height behavior on iOS Safari and mobile
+	// Fix full-height behavior on all mobile browsers (especially Safari)
     var fullHeight = function() {
       function setHeight() {
-        var windowHeight = window.innerHeight;
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
     
         if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-          // On mobile Safari, use min-height to prevent scroll lock
           $('.js-fullheight').css({
-            'min-height': windowHeight + 'px',
+            'min-height': `calc(var(--vh, 1vh) * 100)`,
             'height': 'auto'
           });
         } else {
-          // On desktop or Chrome mobile, keep full height
           $('.js-fullheight').css({
-            'height': windowHeight + 'px',
+            'height': `calc(var(--vh, 1vh) * 100)`,
             'min-height': 'auto'
           });
         }
       }
     
+      // Run once and on resize/orientation change
       setHeight();
-      $(window).on('resize orientationchange', setHeight);
+      $(window).on('resize orientationchange', function() {
+        setTimeout(setHeight, 100); // delay to handle Safari UI animation
+      });
     };
     fullHeight();
+
 
 
 
