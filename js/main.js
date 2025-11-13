@@ -317,6 +317,36 @@
     fixedContentPos: false
   });
 
+
+    // Fix: allow scrolling when touching hero image on mobile
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      (function($){
+        var restorePointer = function(el) {
+          // restore with a slight delay for safety
+          setTimeout(function(){ el.css('pointer-events','auto'); }, 300);
+        };
+    
+        $('.hero .one-third.img').each(function(){
+          var $imgLayer = $(this);
+    
+          $imgLayer.on('touchstart', function(e){
+            // allow scroll to pass through this layer
+            $imgLayer.css('pointer-events','none');
+          });
+    
+          $imgLayer.on('touchend touchcancel', function(e){
+            restorePointer($imgLayer);
+          });
+    
+          // fallback: restore automatically in case touchend doesn't trigger
+          $imgLayer.on('touchstart', function(){
+            setTimeout(function(){ restorePointer($imgLayer); }, 1000);
+          });
+        });
+      })(jQuery);
+    }
+
+
 })(jQuery);
 
 
