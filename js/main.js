@@ -13,16 +13,33 @@
 
 
 	var fullHeight = function() {
-       function updateHeight() {
-         var windowHeight = window.innerHeight;
-         $('.js-fullheight').css('height', windowHeight + 'px');
-       }
-     
-       updateHeight();
-       $(window).on('resize orientationchange', updateHeight);
-       };
-       fullHeight();
-  
+      function setHeight() {
+        var windowHeight = window.innerHeight || $(window).height();
+        
+        // On mobile, don't lock the height strictly
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+          $('.js-fullheight').css('min-height', windowHeight + 'px');
+        } else {
+          $('.js-fullheight').css('height', windowHeight + 'px');
+        }
+      }
+      setHeight();
+      $(window).on('resize orientationchange', setHeight);
+    };
+    fullHeight();
+
+
+
+	if (/Mobi|Android/i.test(navigator.userAgent)) {
+      // Disable all parallax scripts on mobile
+      if (typeof $.Scrollax === 'function') {
+        try { $.Scrollax().destroy(); } catch (e) {}
+      }
+      if (typeof $(window).stellar === 'function') {
+        try { $(window).stellar('destroy'); } catch (e) {}
+      }
+    }
+
 
 	// loader
 	var loader = function() {
@@ -34,12 +51,6 @@
 	};
 	loader();
 
-	// Scrollax — disabled to fix disappearing text on desktop
-    if (typeof $.Scrollax === 'function') {
-      try {
-        $.Scrollax().destroy(); // disable parallax but keep layout normal
-      } catch (e) {}
-    }
     
 
     // Burger Menu
