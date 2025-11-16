@@ -541,40 +541,42 @@
 
 			<div class="row block-9">
 				<div class="col-md-8">
-					<form action="https://formsubmit.co/skstudioforms@outlook.com" class="bg-light p-4 p-md-5 contact-form" method="post">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<input type="text" name="name" class="form-control" placeholder="Nombre" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input type="email" name="email" class="form-control" placeholder="Correo" required>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<input type="text" name="asunto" class="form-control" placeholder="Asunto">
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Mensaje" required></textarea>
-								</div>
-							</div>
+					<form action="https://api.web3forms.com/submit" method="POST" class="bg-light p-4 p-md-5 contact-form">
 
-							<!-- optional: redirect after sending -->
-                            <input type="hidden" name="_next" value="https://sanapk2002.github.io/sk-studio/thankyou.html">
+                        <input type="hidden" name="access_key" value="0f08bee0-cd1b-476e-8581-6f9c5d40a513">
+                    
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" placeholder="Nombre" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control" placeholder="Correo" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="asunto" class="form-control" placeholder="Asunto">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea name="message" cols="30" rows="7" class="form-control" placeholder="Mensaje" required></textarea>
+                                </div>
+                            </div>
+                    
+                            <input type="hidden" name="redirect" value="https://sanapk2002.github.io/sk-studio/thankyou.html">
+                    
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="submit" value="Enviar Mensaje" class="btn btn-primary py-3 px-5">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
 
-							<div class="col-md-12">
-								<div class="form-group">
-									<input type="submit" value="Mandar Mensaje" class="btn btn-primary py-3 px-5">
-								</div>
-							</div>
-						</div>
-					</form>
-					
 				</div>
 
 				<div class="col-md-4 d-flex pl-md-5">
